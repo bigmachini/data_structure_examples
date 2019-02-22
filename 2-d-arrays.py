@@ -1,6 +1,14 @@
 '''
 This is an array of arrays where data is accessed via two indicies, one representing the row number and another representing the column number
 if the column number is no provided the whole array in that row is displayed
+
+insertion, deletion and updating of a 2-D array is similar to those of a regular array with just an extra index
+
+del T[r] will delete all contents in row r
+del T[r][c] will delete value at row r and column c
+
+T.insert(r, value) this will insert value at index r
+
 '''
 
 from array import *
