@@ -26,7 +26,7 @@ print(''.join(res))
 
 class Node:
     def __init__(self, data=None):
-        next, data = None, data
+        self.next, self.data = None, data
 
 class LinkedList:
     def __init__(self):
@@ -37,40 +37,51 @@ class LinkedList:
         while x  is not None:
             print(x.data, end=' ')
             x  = x .next
-            
 
-    def insert(self, positon, data, head):
+    def lenght(self):
+        self.length
+        while(self.head.next):
+            self.length += 1
+            self.head = self.head.next
+
+    def insertStart(self,data):
+        node = Node(data)
+        tmpNode = self.head
+        self.head = node
+        node.next = tmpNode
+    
+    def insertEnd(self, data):
+        node = Node(data)
+        self.next = node
+
+ 
+    def insert(self, positon, data):
         node = Node(data)
         if positon == 0:
-            tmpNode = head.next
-            head = node
-            node.next = tmpNode
-            self.length += 1
+            self.insertStart(data)
         elif positon == self.length:
-            self.next = node
-
+            self.insertEnd(data)
         else:
             i = 0
-            while(head.next):
+            while(self.head.next):
                 i += 1
                 if i == positon:
-                    node.next = head.next
-                    head.next = node
+                    node.next = self.head.next
+                    self.head.next = node
 
-
-
-        self.length += 1
-
-
-list = LinkedList()
-list.head = Node("Mon")
+list1 = LinkedList()
+list1.head = Node("Mon")
 e2 = Node("Tue")
 e3 = Node("Wed")
 
 # Link first Node to second node
-list.head.nextval = e2
+list1.head.next = e2
 
 # Link second Node to third node
-e2.nextval = e3
-
-list.print()          
+e2.next = e3
+       
+list1.insertStart('Sun')
+list1.insertEnd('Thur')
+list1.print()
+list1.lenght()
+print('length: {}'.format(list1.length))
