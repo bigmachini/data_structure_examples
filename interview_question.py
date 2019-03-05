@@ -31,43 +31,72 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.length = 0
+
     def print(self):
         x = self.head
         while x  is not None:
             print(x.data, end=' ')
-            x  = x .next
+            x  = x.next
 
-    def lenght(self):
-        self.length
+    def getNode(self, position):
+        x = self.head
+        i = 0
+        while x  is not None:
+            if i == position:
+                print("Node: {} ".format(x.data))
+                return x            
+            x  = x.next
+            i += 1
+
+    def length(self):
+        length = 0
         while(self.head.next):
-            self.length += 1
+            length += 1
             self.head = self.head.next
+        return length
 
     def insertStart(self,data):
         node = Node(data)
-        tmpNode = self.head
+        node.next = self.head
         self.head = node
-        node.next = tmpNode
+ 
     
     def insertEnd(self, data):
         node = Node(data)
-        self.next = node
+        if self.head is None:
+            self.head = node
+            return
+     
+        laste = self.head
+        while(laste.next):
+            laste = laste.next
+        laste.next=node
 
  
     def insert(self, positon, data):
-        node = Node(data)
+
+        i = 0
         if positon == 0:
             self.insertStart(data)
-        elif positon == self.length:
+            return
+        
+        length =  self.length()
+        if positon ==  length:
             self.insertEnd(data)
-        else:
-            i = 0
-            while(self.head.next):
-                i += 1
-                if i == positon:
-                    node.next = self.head.next
-                    self.head.next = node
+            return    
+
+        if positon > length:
+            print('Invalid position ')
+            return   
+
+        laste = self.head
+        while(laste.next):
+
+            if positon == i:
+                node = Node(data)
+                node.next = laste.head
+                laste.head = node
+            i += 1
 
 list1 = LinkedList()
 list1.head = Node("Mon")
@@ -81,7 +110,8 @@ list1.head.next = e2
 e2.next = e3
        
 list1.insertStart('Sun')
-list1.insertEnd('Thur')
+list1.insertEnd('Thu')
+list1.insertEnd('Sat')
+list1.getNode(5)
 list1.print()
-list1.lenght()
-print('length: {}'.format(list1.length))
+print('length: {}'.format(list1.length()))
