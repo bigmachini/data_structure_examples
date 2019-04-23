@@ -73,30 +73,15 @@ class LinkedList:
         laste.next=node
 
  
-    def insert(self, positon, data):
+    def insert(self, prev_node, data):
+        node = Node(data)
+        node.next = prev_node.next
+        prev_node.next  =node
 
-        i = 0
-        if positon == 0:
-            self.insertStart(data)
-            return
-        
-        length =  self.length()
-        if positon ==  length:
-            self.insertEnd(data)
-            return    
+    def deleteNode(self, delete_node):
+        pass
 
-        if positon > length:
-            print('Invalid position ')
-            return   
 
-        laste = self.head
-        while(laste.next):
-
-            if positon == i:
-                node = Node(data)
-                node.next = laste.head
-                laste.head = node
-            i += 1
 
 list1 = LinkedList()
 list1.head = Node("Mon")
@@ -112,6 +97,7 @@ e2.next = e3
 list1.insertStart('Sun')
 list1.insertEnd('Thu')
 list1.insertEnd('Sat')
-list1.getNode(5)
+x = list1.getNode(4)
+list1.insert(x,"Fri")
 list1.print()
 print('length: {}'.format(list1.length()))
